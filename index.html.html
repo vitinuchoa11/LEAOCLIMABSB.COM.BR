@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head><meta name="google-site-verification" content="NAzk7ecajxxX1iktMRejnNzWacdaFT1U4eopGuVlB0Y" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LEÃO CLIMA | Ar Gelando, Cliente Feliz</title>
+
+<link rel="icon" href="favicon.png" type="image/png">
+<link rel="shortcut icon" href="favicon.png">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://unpkg.com/scrollreveal"></script>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&display=swap');
+        
+        body { 
+            font-family: 'Space Grotesk', sans-serif; 
+            background-color: #0f172a; /* CLAREADO */
+            color: #fff; 
+            overflow-x: hidden; 
+        }
+
+        .bg-main {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            /* CLAREADO: Gradiente com mais transparência */
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.6), rgba(30, 58, 138, 0.5)), url('foto.png');
+            background-size: cover;
+            background-position: center;
+            z-index: -1;
+        }
+        
+        .bg-grid {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: radial-gradient(circle at 2px 2px, #3b82f633 1px, transparent 0);
+            background-size: 32px 32px;
+            z-index: -1;
+        }
+
+        /* BRILHO NEON */
+        .neon-blue { 
+            text-shadow: 0 0 15px rgba(56, 189, 248, 0.7); 
+            color: #38bdf8;
+            animation: pulse-neon 2s infinite alternate;
+        }
+        @keyframes pulse-neon {
+            from { text-shadow: 0 0 10px rgba(56, 189, 248, 0.5); }
+            to { text-shadow: 0 0 25px rgba(56, 189, 248, 0.9), 0 0 45px rgba(56, 189, 248, 0.3); }
+        }
+
+        .photo-frame {
+            position: relative;
+            border-radius: 3rem;
+            padding: 8px;
+            background: linear-gradient(45deg, #3b82f6, #8b5cf6, #06b6d4);
+            box-shadow: 0 0 30px rgba(59, 130, 246, 0.3);
+        }
+
+        .scan-effect {
+            width: 100%; height: 4px; background: #38bdf8;
+            box-shadow: 0 0 20px #38bdf8; position: absolute;
+            z-index: 10; animation: scanning 4s linear infinite;
+        }
+
+        @keyframes scanning {
+            0% { top: 0%; opacity: 0; }
+            50% { opacity: 1; }
+            100% { top: 100%; opacity: 0; }
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .btn-gradient {
+            background: linear-gradient(90deg, #2563eb, #7c3aed);
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4);
+        }
+
+        .input-style {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(56, 191, 248, 0.308);
+            color: white; padding: 12px; border-radius: 12px; width: 100%; outline: none;
+        }
+
+        .snow-flake {
+            position: fixed; top: -10px; color: white; opacity: 0.3;
+            user-select: none; pointer-events: none; animation: fall linear infinite;
+            z-index: 1;
+        }
+        @keyframes fall { to { transform: translateY(110vh); } }
+
+        .float-img { animation: float 6s ease-in-out infinite; }
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
+
+        /* ESTILO DO CARROSSEL DE MARCAS */
+        .marquee-container {
+            overflow: hidden;
+            display: flex;
+            user-select: none;
+            gap: 2rem;
+            padding: 2rem 0;
+        }
+        .marquee-content {
+            flex-shrink: 0;
+            display: flex;
+            justify-content: space-around;
+            min-width: 100%;
+            gap: 4rem;
+            animation: scroll-left 25s linear infinite;
+        }
+        @keyframes scroll-left {
+            from { transform: translateX(0); }
+            to { transform: translateX(-100%); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bg-main"></div>
+    <div class="bg-grid"></div>
+    <div id="snow-container"></div>
+
+    <nav class="fixed w-full z-50 p-6">
+        <div class="max-w-6xl mx-auto flex justify-between items-center p-4 rounded-2xl border border-white/10 bg-slate-900/80 backdrop-blur-xl shadow-2xl">
+            <div class="flex items-center gap-2">
+                <span class="text-xl font-black tracking-tighter uppercase text-white">LEÃO<span class="text-blue-400 italic">CLIMA</span></span>
+            </div>
+            <a href="https://wa.me/5561992929408" class="btn-gradient px-6 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest text-white hover:scale-105 transition">Orçamento WhatsApp</a>
+        </div>
+    </nav>
+
+    <section class="min-h-screen flex items-center justify-center px-6 pt-20">
+        <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+            <div class="reveal-left">
+                <div class="inline-block px-3 py-1 rounded-md bg-blue-500/20 border border-blue-500/30 text-blue-300 text-[10px] font-bold uppercase tracking-widest mb-6">❄️ Especialistas em Brasília</div>
+                <h1 class="text-5xl md:text-7xl font-extrabold mb-8 leading-tight uppercase italic">
+                    <span id="text-rotator" class="neon-blue" style="transition: opacity 0.4s ease;">AR GELANDO, CLIENTE FELIZ.</span>
+                </h1>
+                <p class="text-slate-300 text-lg mb-10 max-w-sm font-medium">Manutenção técnica e colorida para dar vida nova ao seu aparelho. Conforto máximo garantido.</p>
+                <a href="#orcamento" class="btn-gradient text-white px-10 py-5 rounded-2xl font-black text-sm transition duration-300 hover:scale-105 inline-block uppercase tracking-widest">Chamar Agora</a>
+            </div>
+            <div class="reveal-right flex justify-center">
+                <div class="photo-frame">
+                    <div class="scan-effect"></div>
+                    <div class="rounded-[2.5rem] overflow-hidden">
+                        <img src="LEAO.jpeg" class="w-full max-sm h-auto object-cover grayscale-[10%] hover:grayscale-0 transition duration-700" onerror="this.src='https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&q=80&w=800'">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-12 border-y border-white/5 bg-black/20">
+        <div class="marquee-container">
+            <div class="marquee-content">
+                <span class="text-xl font-black italic">SAMSUNG</span>
+                <span class="text-xl font-black italic">LG</span>
+                <span class="text-xl font-black italic">SPRINGER</span>
+                <span class="text-xl font-black italic">ELGIN</span>
+                <span class="text-xl font-black italic">PHILCO</span>
+                <span class="text-xl font-black italic">GREE</span>
+                <span class="text-xl font-black italic">MIDEA</span>
+                <span class="text-xl font-black italic">ELECTROLUX</span>
+            </div>
+            <div class="marquee-content" aria-hidden="true">
+                <span class="text-xl font-black italic">SAMSUNG</span>
+                <span class="text-xl font-black italic">LG</span>
+                <span class="text-xl font-black italic">SPRINGER</span>
+                <span class="text-xl font-black italic">ELGIN</span>
+                <span class="text-xl font-black italic">PHILCO</span>
+                <span class="text-xl font-black italic">GREE</span>
+                <span class="text-xl font-black italic">MIDEA</span>
+                <span class="text-xl font-black italic">ELECTROLUX</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 px-6">
+        <div class="max-w-6xl mx-auto text-center mb-16">
+            <h2 class="text-4xl font-black uppercase italic mb-4">O Poder da <span class="text-blue-400">Limpeza</span></h2>
+            <p class="text-slate-400">Confira nossos resultados reais de higienização técnica</p>
+        </div>
+              <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-10">
+    <div class="reveal-bottom glass-card p-2 rounded-[2rem] border-red-500/20">
+        <div class="relative rounded-[1.5rem] overflow-hidden">
+            <img src="ANTES.jpeg" class="w-full h-48 object-cover">
+            <span class="absolute bottom-2 left-2 bg-red-600 text-[10px] font-bold px-2 py-1 rounded">ANTES</span>
+        </div>
+    </div>
+
+    <div class="reveal-bottom glass-card p-2 rounded-[2rem] border-green-500/20">
+        <div class="relative rounded-[1.5rem] overflow-hidden">
+            <img src="DEPOIS.jpeg" class="w-full h-48 object-cover">
+            <span class="absolute bottom-2 left-2 bg-green-600 text-[10px] font-bold px-2 py-1 rounded">DEPOIS</span>
+        </div>
+    </div>
+</div>  
+        
+        <p class="mt-6 text-center text-xs font-bold text-blue-400 uppercase tracking-tighter">Higienização de Evaporadora, Filtros e Turbina</p>
+    </section>
+        <div 
+      
+<section class="py-12 px-6">
+    
+    <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
+        
+      
+        <div class="reveal-bottom glass-card p-2 rounded-[2.5rem]">
+            <img src="ar.jpeg" class="rounded-[2.2rem] w-full h-64 object-cover" onerror="this.onerror=null; this.src='Instalacao.jpg'">
+        </div>
+
+       
+        <div class="reveal-bottom glass-card p-2 rounded-[2.5rem]">
+            
+            <img src="ar2.jpg" class="rounded-[2.2rem] w-full h-64 object-contain object-center mx-auto" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1581094288338-2314dddb7ece?q=80&w=500'">
+        </div>
+        
+    </div>
+</section>
+
+<div class="max-w-4xl mx-auto mt-16 mb-16 px-6">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+        
+ 
+        <div class="p-4">
+            <div class="text-blue-500 text-2xl mb-2">🍃</div>
+            <h4 class="font-bold text-gray-800 dark:text-white mb-1">Ar Sempre Puro</h4>
+            <p class="text-sm text-gray-500 dark:text-gray-400">Elimina o acúmulo de fungos, ácaros e bactérias do ambiente.</p>
+        </div>
+
+        
+        <div class="p-4 border-y md:border-y-0 md:border-x border-gray-200 dark:border-gray-800">
+            <div class="text-blue-500 text-2xl mb-2">🛡️</div>
+            <h4 class="font-bold text-gray-800 dark:text-white mb-1">Proteção e Saúde</h4>
+            <p class="text-sm text-gray-500 dark:text-gray-400">Previne crises severas de rinite, asma e alergias respiratórias.</p>
+        </div>
+
+      
+        <div class="p-4">
+            <div class="text-blue-500 text-2xl mb-2">⚡</div>
+            <h4 class="font-bold text-gray-800 dark:text-white mb-1">Mais Economia</h4>
+            <p class="text-sm text-gray-500 dark:text-gray-400">Evita o esforço excessivo do motor, reduzindo a conta de energia.</p>
+        </div>
+
+    </div>
+</div>
+    <section class="py-24 px-6 bg-blue-600/5">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid md:grid-cols-2 gap-16 items-center mb-20">
+                <div class="reveal-left order-2 md:order-1">
+                    <img src="https://images.unsplash.com/photo-1563453392212-326f5e854473?q=80&w=1000&auto=format&fit=crop" class="rounded-[3rem] border-2 border-blue-400/30 shadow-2xl float-img">
+                </div>
+                <div class="reveal-right order-1 md:order-2">
+                    <h2 class="text-4xl font-black uppercase italic mb-8 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">Conhecimento é Poder</h2>
+                    <div class="space-y-6">
+                        <div class="glass-card p-6 rounded-2xl border-l-4 border-blue-400">
+                            <h4 class="font-bold text-blue-300 mb-2 uppercase">🎞️ O Cinema Agradece</h4>
+                            <p class="text-slate-400 text-sm">Em 1925, os cinemas foram os primeiros lugares com ar. As pessoas iam ver filmes apenas para refrescar do calor!</p>
+                        </div>
+                        <div class="glass-card p-6 rounded-2xl border-l-4 border-purple-500">
+                            <h4 class="font-bold text-purple-300 mb-2 uppercase">🍏 A Lição de Willis</h4>
+                            <p class="text-slate-400 text-sm">Willis Carrier aprendeu frações com maçãs cortadas pela mãe. Essa mesma simplicidade resolve seu problema hoje.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 px-6 bg-slate-900/40">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl font-black mb-12 uppercase italic text-center">Máxima <span class="text-blue-400">Eficiência</span></h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="glass-card p-8 rounded-[2rem] reveal-bottom border-t-4 border-yellow-500">
+                    <i class="fas fa-coins text-3xl text-yellow-400 mb-6"></i>
+                    <h3 class="text-xl font-bold mb-4 uppercase text-yellow-400">Economia</h3>
+                    <p class="text-slate-400 text-sm">Ar limpo gasta 30% menos energia. Manter em 23°C é o segredo para o equilíbrio no bolso.</p>
+                </div>
+                <div class="glass-card p-8 rounded-[2rem] reveal-bottom border-t-4 border-blue-500" style="transition-delay: 200ms;">
+                    <i class="fas fa-hand-sparkles text-3xl text-blue-400 mb-6"></i>
+                    <h3 class="text-xl font-bold mb-4 uppercase text-blue-400">Saúde Neon</h3>
+                    <p class="text-slate-400 text-sm">Eliminamos ácaros e fungos com técnica profunda. Respire um ar puro e renovado.</p>
+                </div>
+                <div class="glass-card p-8 rounded-[2rem] reveal-bottom border-t-4 border-green-500" style="transition-delay: 400ms;">
+                    <i class="fas fa-shield-alt text-3xl text-green-400 mb-6"></i>
+                    <h3 class="text-xl font-bold mb-4 uppercase text-green-400">Garantia</h3>
+                    <p class="text-slate-400 text-sm">Serviço profissional e organizado. Sua satisfação é a marca da Leão Clima.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="orcamento" class="py-24 px-6">
+        <div class="max-w-3xl mx-auto glass-card p-10 rounded-[3rem] border-2 border-blue-500/30 reveal-bottom">
+            <h2 class="text-3xl font-black uppercase italic mb-8 text-center">Orçamento <span class="text-blue-400">Rápido</span></h2>
+            <form id="formWhatsApp" class="space-y-4">
+                <input type="text" id="nomeCliente" placeholder="Nome" class="input-style focus:border-blue-400 transition" required>
+                <input type="text" id="telCliente" placeholder="WhatsApp" class="input-style focus:border-blue-400 transition" required>
+                <select id="servicoCliente" class="input-style focus:border-blue-400 transition cursor-pointer">
+                    <option value="Limpeza e Higienização" class="bg-slate-900">Limpeza e Higienização</option>
+                    <option value="Instalação Profissional" class="bg-slate-900">Instalação Profissional</option>
+                    <option value="Manutenção / Conserto" class="bg-slate-900">Manutenção / Conserto</option>
+                </select>
+                <button type="submit" class="w-full btn-gradient py-5 rounded-xl font-black uppercase text-white tracking-widest hover:brightness-125 transition">Solicitar Agora</button>
+            </form>
+        </div>
+    </section>
+
+    <section class="py-24 px-6 bg-black/60">
+        <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+            <div class="reveal-left">
+                <h2 class="text-4xl font-black uppercase mb-8 italic text-blue-400">Localização</h2>
+                <div class="space-y-6 mb-8">
+                    <p class="text-slate-300 flex items-center gap-4 text-lg font-medium">
+                        <i class="fas fa-map-marker-alt text-blue-400 text-2xl"></i> 
+                        SHIGS 711 Bloco K Casa 30 - Asa Sul, Brasília
+                    </p>
+                    <p class="text-slate-300 flex items-center gap-4 text-lg font-medium">
+                        <i class="fas fa-clock text-blue-400 text-2xl"></i> 
+                        Atendimento em toda Brasília
+                    </p>
+                </div>
+                <a href="https://maps.app.goo.gl/3A7FkYm6Y9Z9Z9Z9" target="_blank" class="btn-gradient text-white px-8 py-4 rounded-xl font-black text-xs uppercase tracking-widest inline-block">
+                    <i class="fas fa-location-arrow mr-2"></i> Abrir GPS
+                </a>
+            </div>
+            <div class="reveal-right h-80 rounded-[3rem] overflow-hidden border-4 border-blue-500/30 shadow-2xl">
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3838.749035122421!2d-47.9156096!3d-15.8171732!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x935a3ade0df72f7d%3A0x867b36f7312e75e9!2sSHIGS%20711%20Bloco%20K%20Casa%2030!5e0!3m2!1spt-BR!2sbr!4v1715000000000" 
+                    width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy">
+                </iframe>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-12 text-center opacity-60 text-[10px] font-bold uppercase tracking-[1em] text-blue-400">
+        Leão Clima · Brasília · 2026
+    </footer>
+
+    <a href="https://wa.me/5561992929408" class="fixed bottom-8 right-8 z-50 bg-[#25D366] w-16 h-16 rounded-full flex items-center justify-center shadow-2xl hover:scale-110 transition animate-pulse">
+        <i class="fab fa-whatsapp text-3xl text-white"></i>
+    </a>
+
+    <script>
+        // FORMULÁRIO WHATSAPP
+        document.getElementById('formWhatsApp').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const nome = document.getElementById('nomeCliente').value;
+            const tel = document.getElementById('telCliente').value;
+            const serv = document.getElementById('servicoCliente').value;
+            const msg = `Olá Leão Clima! Meu nome é ${nome} (${tel}). Gostaria de um orçamento para: ${serv}.`;
+            window.open(`https://wa.me/5561992929408?text=${encodeURIComponent(msg)}`, '_blank');
+        });
+
+        ScrollReveal().reveal('.reveal-left', { origin: 'left', distance: '80px', duration: 1500 });
+        ScrollReveal().reveal('.reveal-right', { origin: 'right', distance: '80px', duration: 1500 });
+        ScrollReveal().reveal('.reveal-bottom', { origin: 'bottom', distance: '50px', duration: 1200 });
+
+        const snowContainer = document.getElementById('snow-container');
+        function createSnow() {
+            const flake = document.createElement('div');
+            flake.classList.add('snow-flake');
+            flake.innerHTML = '❄️';
+            flake.style.left = Math.random() * 100 + 'vw';
+            flake.style.animationDuration = Math.random() * 3 + 4 + 's';
+            flake.style.fontSize = Math.random() * 10 + 10 + 'px';
+            flake.style.opacity = Math.random();
+            snowContainer.appendChild(flake);
+            setTimeout(() => flake.remove(), 7000);
+        }
+        setInterval(createSnow, 300);
+
+        // NOVAS FRASES
+        const phrases = [
+            "AR GELANDO, CLIENTE FELIZ.",
+            "MANUTENÇÃO EM DIA, CONFORTO GARANTIDO.",
+            "O GELO QUE VOCÊ PRECISA, A QUALIDADE QUE MERECE."
+        ];
+        let i = 0;
+        setInterval(() => {
+            const el = document.getElementById("text-rotator");
+            if (el) {
+                el.style.opacity = 0;
+                setTimeout(() => {
+                    i = (i + 1) % phrases.length;
+                    el.innerText = phrases[i];
+                    el.style.opacity = 1;
+                }, 400);
+            }
+        }, 4000);
+    </script>
+</body>
+</html>
